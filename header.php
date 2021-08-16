@@ -1,14 +1,16 @@
 <?php session_start();
-//ini_set('display_errors', 1);
-//ini_set('display_startup_errors', 1);
-//error_reporting(E_ALL);
+@ini_set('display_errors', 1);
+@ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 /**
  * SnippWiki app
  * LICENSE: Apache
  * @author  Larry Judd & Tradesouthwest
  * @link    https://tradesouthwest.com
  */
+//$meta_title = https://stackoverflow.com/a/68806492/2654877 
 include "snippwiki-config.php";
+
 ?>
 <?php $username = (!isset ($_SESSION['user_session'])) ? 'Guest' : $_SESSION['login_name']; ?>
 <!doctype html>
@@ -19,8 +21,11 @@ include "snippwiki-config.php";
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="favicon.png">
-
-    <title>Snippets and Code</title>
+    <script>window.onload = function(){
+    var h3Text = document.querySelector("h3").innerText;
+    return document.querySelector("title").innerHTML = h3Text;
+    }</script>
+    <title></title>
 
     <link rel="canonical" href="http://snippwiki.com/">
 

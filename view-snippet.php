@@ -17,6 +17,7 @@ include 'header.php';
 
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
         <article class="viewsnippet">
+        
     <?php 
         /**
          * process only views for selected snippet
@@ -24,7 +25,7 @@ include 'header.php';
          */
     if( isset( $_POST['view_id']) ) 
     { ?>
-        <section class="viewsnippet">
+        <section class="view-snippet">
         <?php 
         $id = (int)clean_data($_POST['view_id']);
         
@@ -37,9 +38,10 @@ include 'header.php';
         $result = $stmt->execute();
         
         if($result){
-// TODO clean whitespace, excess only             
+
+        // TODO clean whitespace, excess only             
         while ($row = $result->fetchArray()) {
-        echo '<h4>Viewing Snippet <span style="font-size:smaller;color:#777">&#34;' . clean_data($row['title']) . '&#34;</span></h4>';
+        echo '<h3>Viewing Snippet <span style="font-size:smaller;color:#777">&#34;' . clean_data($row['title']) . '&#34;</span></h3>';
             echo '<p>id: ' . $row['id'] . '</p>'; 
             echo '<textarea class="darkeditor" id="viewSnippet">'. $row['contents'] . '</textarea>';
             echo '<h5>' . clean_data($row['date_in']) . ' | stat: ' . clean_data($row['privi']) . ' | filed as: ' . clean_data($row['anchor']) . '</h5>';
@@ -58,6 +60,7 @@ include 'header.php';
         }
     // Reset the prepared statement 
     // Destroy the object
+    ?></section><?php 
     $dbh = ''; $id = ''; 
     } ?>
 
@@ -108,8 +111,9 @@ include 'header.php';
           
     if( isset( $_POST['edit_id'] ) )
     { ?>
-        <h3>Editing Snippet</h3>
-        <section class="editsnippet"><?php
+        
+        <section class="editsnippet">
+        <h3>Editing Snippet</h3><?php
         if (!isset($_SESSION['user_session']))
         {
         echo '<a href="http://snippwiki.com/login.php" title="please login" class="btn btn-lg">Please Login If you are going to save a snippet</a>';
@@ -193,9 +197,10 @@ include 'header.php';
             // Reset the prepared statement 
             // Destroy the object
             $dbh = ''; $ided = ''; 
+            ?></section><?php 
     } ?>
 
-        </section>
+        
 
         </article><div class="clearfix"></div>
        
