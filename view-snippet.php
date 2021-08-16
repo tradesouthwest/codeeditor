@@ -43,7 +43,7 @@ include 'header.php';
             echo '<p>id: ' . $row['id'] . '</p>'; 
             echo '<textarea class="darkeditor" id="viewSnippet">'. $row['contents'] . '</textarea>';
             echo '<h5>' . clean_data($row['date_in']) . ' | stat: ' . clean_data($row['privi']) . ' | filed as: ' . clean_data($row['anchor']) . '</h5>';
-            echo '<p><form name="snippet_delete" method="POST" id="snippet_delete" 
+            echo '<p><form name="share_snippet" method="POST" id="share_snippet" 
             action="' . $_SERVER['PHP_SELF'] . '"> 
             <label for="share_snipp">Click to get sharing URL: </label>
             <button type="input" name="share_snipp" title="' . clean_data($row['title']) . '" 
@@ -77,7 +77,7 @@ include 'header.php';
         <h3 class="whitish">Copy this link to send to a friend:</h3>
         <p><button onclick="copyText()">Click Me to Copy</button></p>
         <?php 
-        echo '<textarea id="copiedText"><a href="view-snippet.php?id='. (int)$idsh .'" title="share link to this snippet">View: ' . $share_title . '</a></textarea>
+        echo '<textarea id="copiedText"><a href="http://snippwiki.com/public-snippet.php?pub_id='. (int)$idsh .'" title="share link to this snippet">View: ' . $share_title . '</a></textarea>
             
             <p><form id="viewsnippet" method="POST" action="' . tsw_clean_url('view-snippet.php') .'">
             <button type="input" name="view_id" title="' . $share_title . '" 
@@ -88,13 +88,13 @@ include 'header.php';
         ?> 
         </div>
          <script type="text/javascript">
-function copyText(){
-var text = document.getElementById("copiedText");
-text.select();
-document.execCommand("copy");
-console.log("Copy text to Clipboard: " + text.value);
-}
-</script>
+        function copyText(){
+        var text = document.getElementById("copiedText");
+        text.select();
+        document.execCommand("copy");
+        //console.log("Copy text to Clipboard: " + text.value);
+        }
+        </script>
         </section>
         <?php 
         }
