@@ -1,2 +1,2 @@
 # codeeditor
-code editor based on jquery-te
+This is an alias of master for http://snippwiki.com/ 
