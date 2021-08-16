@@ -29,19 +29,25 @@ include 'header.php';
 
 <?php $idm = (!isset($_SESSION['login_id'])) ? '' : $_SESSION['login_id']; ?>
 
-        <table><tbody class="snipp-foot">
+        <table><tbody class="snipp-body">
         <tr><td>
-        <label for="anchor" class="control-label">footnote: leave empty to insert date</label></td><td>
-        <input type="text" class="form-control" id="anchor" name="anchor" 
-                placeholder="optional" value="">
-        </td></tr><td>
-        <label for="privi" class="control-label">owner</label></td><td>
-        <input type="number" class="form-control" id="privi" name="privi" 
-              placeholder="" value="<?php echo $idm; ?>" readonly>
-        </td></tr><td>
         <label for="stats" class="control-label">status: 1=publish; 0=private</label></td><td>
         <input type="number" class="form-control" id="stats" name="stats" 
               placeholder="optional" value="">
+        </td></tr><td>
+        <label for="privi" class="control-label">owner</label></td><td>
+        <input type="number" class="form-control" id="privi" name="privi" 
+              placeholder="must bee logged in" value="<?php echo $idm; ?>" readonly>
+        </td></tr><td>
+        <label for="anchor" class="control-label">file it under</label></td><td>
+        <select class="form-control" id="anchor" name="anchor">
+        <option value="OTHER">select where to file</option>
+        <option value="PHP">PHP/PDO/SQL[+]</option>
+        <option value="HTML">HTML/CSS</option>
+        <option value="LINUX">Linux/SSH/Server</option>
+        <option value="SCRIPT">Javascript/jQuery</option>
+        <option value="OTHER">XML/Python/Other</option>
+        </select>
         </td></tr><td>
         <label for="submit_new">save gist </label></td><td>
         <input id="submit_new" name="submit_new" type="submit" value="Add New Gist" 
@@ -58,8 +64,8 @@ include 'header.php';
                   <th>#</th>
                   <th>title</th>
                   <th>exceprt</th>
-                  <th>footnote</th>
-                  <th>anchor</th>
+                  <th>date</th>
+                  <th>action</th>
                   </tr>
                   </thead>
             <tbody class="snippet-table-view">

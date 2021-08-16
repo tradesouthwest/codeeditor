@@ -6,10 +6,7 @@
  * @link    https://tradesouthwest.com
  */
 include 'header.php';
-if ( !isset( $_SESSION['user_session'] ) )
-{
-redirect('index.php'); 
-} ?>
+?>
 <div class="container-fluid">
     <div class="row">
     
@@ -18,15 +15,20 @@ redirect('index.php');
         </nav>
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-        <article class="editsnippet border-bottom">
+        <article class="editsnippet border-bottom"><?php
+        if (!isset($_SESSION['user_session']))
+        {
+        echo '<a href="http://snippwiki.com/login.php" title="please login" class="btn btn-lg">Please Login If you are going to save a snippet</a>';
+        return false;
+        } ?>
         <?php 
         if( isset( $_POST['editing_done'] ) )
         {  
         $ided     = substr($_POST['editing_nonce'], 14); 
         $title    = clean_input($_POST['title']); 
-        $anchor   = (!isset($_POST['anchor'])) ? clean_input($_POST['anchor']) : ''; 
+        $anchor   = (!isset($_POST['anchor'])) ? 'OTHER' : clean_input($_POST['anchor']); 
         $contents = clean_data($_POST['contents']);
-        $excerpt  = clean_data(trim(substr($_POST["contents"], 0, 80)," "));
+        $excerpt  = clean_data(trim(substr($_POST['contents'], 0, 80),' '));
         $date_in  = ('' == $_POST['date_in'] ) ? date('Y-m-d H:m:i') 
                     : clean_input($_POST['date_in']);
         $privi    = ('' == $_POST['privi'] ) ? '' : clean_input($_POST['privi']);
@@ -54,20 +56,29 @@ redirect('index.php');
         $result = $stmt->execute();
 
             if($result){
-            ob_start(); 
+            //ob_start(); 
             echo '<aside style="min-height: 280px">
             <p><a href="index.php" title="back home" class="btn">Back Home</a></p>
             <p>edited snippet ' . clean_input($title) . '</p>
             <p>id: ' . (int)$ided . '</p>
-            <p>' . clean_input($date_in) . '</p>
+            <p>on: ' . clean_input($date_in) . '</p>
+            <p>as: ' . clean_input($anchor) . '</p>
+            <form id="viewsnippet" method="POST" action="' . tsw_clean_url('view-snippet.php') .'">
+            <p><button type="input" name="view_id" title="' . $title . '" 
+              class="sendids btn btn-sm btn-default" value="' . (int)$ided . '" 
+              onClick="document.getElementById(this.form).submit(.form);">
+              view ' . $ided . '</button></p>
+            </form>  
             </aside>'; 
-            $html = ob_get_clean(); 
+            //$html = ob_get_clean(); 
               
-            echo $html; 
+            //echo $html; 
             } 
             $dbh = ''; $dbh = null; 
             $ided= $anchor= $title= $stats= $privi= $date_in= $excerpt= $contents='';     
-        } ?>     
+        } else { 
+            echo '<h4>Try this again please. There was some type of malfunction in the junction.</h4>';
+            } ?>     
         </article>
             <div class="btn-toolbar">
                 <div class="btn-group">

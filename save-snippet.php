@@ -27,11 +27,10 @@ redirect('index.php');
     <?php
     if( isset( $_POST['submit_new'] ) ) 
     {
-        $anchor = '';
         $title    = clean_input($_POST['title']);
-        $anchor   = clean_input($_POST['anchor']);
         $contents = clean_data($_POST['contents']);
-        $excerpt  = clean_data(trim( substr($_POST["contents"], 0, 80)," " ));
+        $anchor   = (!isset($_POST['anchor'])) ? 'OTHER' : clean_input($_POST['anchor']); 
+        $excerpt  = clean_data(trim( substr($_POST["contents"], 0, 150)," " ));
         $date_in  = (empty( $_POST['date_in'] )) ? date('Y-m-d H:m:i') 
                     : clean_input($_POST['date_in']);
         $privi    = (!isset($_POST['privi'])) ? '' : clean_input($_POST['privi']);
@@ -54,13 +53,27 @@ redirect('index.php');
 
         if($stmt):
             $lastid = $dbh->lastInsertRowID();
-        echo '<p>Inserted snippet: ' . $title . '</p>';
+        echo '<h4>Inserted snippet: ' . $title . '</h4>'; /*
         echo '<form id="viewsnippet" action="'. tsw_clean_url('view-snippet.php') .'" method="POST">
         <p><input type="hidden" name="tsw_nonce" value="'. $lastid .'">
         <button name="view_id" title="view" class="sendids btn btn-sm btn-default" 
             value="' . $lastid . '" onClick="document.getElementById(this.form).submit(.form);">
             view ' . $lastid . '</button></p>
-        </form>'; 
+        </form>'; */
+
+        echo '<aside style="min-height: 280px">
+            <p><a href="index.php" title="back home" class="btn">Back Home</a></p>
+            <p>edited snippet ' . clean_input($title) . '</p>
+            <p>id: ' . (int)$lastid . '</p>
+            <p>on: ' . clean_input($date_in) . '</p>
+            <p>as: ' . clean_input($anchor) . '</p>
+            <form id="viewsnippet" method="POST" action="' . tsw_clean_url('view-snippet.php') .'">
+            <p><button type="input" name="view_id" title="' . $title . '" 
+              class="sendids btn btn-sm btn-default" value="' . (int)$lastid . '" 
+              onClick="document.getElementById(this.form).submit(.form);">
+              view ' . (int)$lastid . '</button></p>
+            </form>  
+            </aside>';
         ?> 
         <div class="btn-toolbar">
             <div class="btn-group-inline">

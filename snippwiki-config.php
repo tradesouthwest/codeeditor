@@ -5,8 +5,8 @@
  * @author  Larry Judd & Tradesouthwest
  * @link    https://tradesouthwest.com
  */
-ini_set('display_errors', 1);
-//ini_set('display_startup_errors', 1);
+@ini_set('display_errors', 1);
+//@ini_set('display_startup_errors', 1);
 error_reporting(E_ALL); 
  
 if( !defined('SNIPP_BASE') ): 
@@ -42,24 +42,25 @@ function clean_input($data) {
   $data = htmlspecialchars($data);
   return $data;
 }
+
+function clean_data($data) {
+    /* trim whitespace */
+    $data = trim($data);
+    $data = htmlspecialchars($data);
+
+        return $data;
+}
+
 function tsw_nonce($nonce_name)
 {
 return true;
-
 }  
 
 function tsw_clean_url($str)
 {
-
 return htmlspecialchars( SNIPP_BASE . $str );
 }
-function clean_data($data) {
-    /* trim whitespace */
-    $data = trim($data);
-    //$data = htmlspecialchars($data);
 
-        return $data;
-}
 // settings - functions - filter
 function esc($s){
 //$escaped = SQLite3::escapeString($sql);
@@ -70,6 +71,15 @@ function alpha_only( $string )
     {
         return preg_replace('/[^a-zA-Z0-9\s]/', '', $string);
     }
+
+function tsw_selected( $opt, $val )
+{
+    $sel = '';
+    $opt = ('' != $opt ) ? $opt : 'OTHER';
+    if( $opt == $val ) $sel = true;
+    if ( $sel ) {
+    return 'selected="selected"'; } else { return ''; }
+} 
 // safe redirect
 function redirect($url)
 {

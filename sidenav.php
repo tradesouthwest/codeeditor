@@ -1,6 +1,5 @@
-    <div class="sidebar-sticky">
-    
-    <ul class="nav flex-column">
+<div class="sidebar-sticky">
+        <ul class="nav flex-column">
         <li class="nav-item">
           <a class="nav-link" href="index.php">
             New Snipp
@@ -36,34 +35,47 @@
             Integrations
           </a>
         </li>
-    </ul>
-<hr>
-    <ul class="nav flex-column mb-2">
+        </ul>
+        <hr>
+        <form action="<?php echo tsw_clean_url('search-view.php'); ?>" id="searchLink" method="POST">
+        <ul class="nav flex-column mb-2">
         <li class="nav-item">
-          <a class="nav-link" href="#">
-            <span data-feather="file-text"></span>
-            Current month
-          </a>
+          <button name="search_link" class="nav-link" title="PHP" value="PHP" 
+              onClick="document.getElementById(this.form).submit(.form);">
+            <span data-feather="file-text">
+            PHP/PDO/SQL</span>
+          </button>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">
-            <span data-feather="file-text"></span>
-            Last quarter
-          </a>
+          <button name="search_link" class="nav-link" title="HTML" value="HTML" 
+              onClick="document.getElementById(this.form).submit(.form);">
+            <span data-feather="file-text">
+            HTML/CSS</span>
+          </button>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">
-            <span data-feather="file-text"></span>
-            Social engagement
-          </a>
+          <button name="search_link" class="nav-link" title="SCRIPT" value="SCRIPT" 
+              onClick="document.getElementById(this.form).submit(.form);">
+            <span data-feather="file-text">
+            Javascript/jQuery/JSON</span>
+          </button>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">
-            <span data-feather="file-text"></span>
-            Year-to-date Stats
-          </a>
+          <button name="search_link" class="nav-link" title="LINUX" value="LINUX" 
+              onClick="document.getElementById(this.form).submit(.form);">
+            <span data-feather="file-text">
+            Linux/SSH/Server</span>
+          </button>
         </li>
-    </ul>
+        <li class="nav-item">
+          <button name="search_link" class="nav-link" title="OTHER" value="OTHER" 
+              onClick="document.getElementById(this.form).submit(.form);">
+            <span data-feather="file-text">
+            XML/Python/Other</span>
+          </button>
+        </li>
+        </ul>
+        </form>
 </div> 
 <form action="<?php echo tsw_clean_url('search-view.php'); ?>" id="searchText" method="POST">
 <fieldset>

@@ -1,4 +1,5 @@
 body{background: #fcfcfc;overflow-x:hidden;max-width: 1960px; margin: 0 auto;}
+#main{height: 100%;min-height: calc( 25vh + 520px );}
 .darkeditor {
             background: #484949;
             border-radius: 6px;
@@ -29,8 +30,10 @@ body{background: #fcfcfc;overflow-x:hidden;max-width: 1960px; margin: 0 auto;}
     height: auto;
     max-height: 5em;
     display:block;
-    padding: 3px;
     margin-top: -1px;
+}
+.snippet-table-view td{
+    padding:3px;
 }
 .snippet-table-view xmp{
     margin:0;
@@ -38,6 +41,7 @@ body{background: #fcfcfc;overflow-x:hidden;max-width: 1960px; margin: 0 auto;}
     line-height: 1.28;
     
 }
+.snipp-body td {padding-top: 8px;}
 .viewsnippet textarea.darkeditor{
     min-height: 540px;
     height:max-content;
@@ -55,6 +59,20 @@ body{background: #fcfcfc;overflow-x:hidden;max-width: 1960px; margin: 0 auto;}
 }
 .snipp-hq-less .table > tbody > tr > td{padding: 0;line-height: 1;vertical-align: middle;}
 .btn{border-color: #cccfce;border-width:1px; margin: 2px 15px 2px 0;}
+li.nav-item button.nav-link{
+background-image: none;
+background: transparent;
+position: relative;
+display: block;
+padding: 10px 15px;
+color: white;
+border-bottom: thin solid white;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+width: 100%;
+text-align: left;
+}
 label{border-bottom: 1px dashed #cccfce;line-height: 1;margin-bottom: 0px;}
 .snipp-foot label {width: 100%;}
 .form-control{margin-top:1px;}
@@ -72,10 +90,14 @@ td{padding-right:5px;}
 .pad-15{padding-left: 15px;padding-right: 15px;}
 .pad-30{padding-left: 30px;padding-right: 30px;}
 .pb-sm{padding-bottom: 10px;}
-
+.whitish{color: #effafa;}
 .editids, .sendids { min-width: 46px;margin: 0 2px;}
 .editsnippet .danger-zone{border-top: thin solid #d30;padding-left: 0;
 margin-top: 10px;}
+.share-snippet{ position:relative;top:15vh; }
+#basic-modal-content{height:360px; width:600px; background-color:#2d2d2d; border:4px solid #ccc; padding:12px;}
+.share-lnk{color:#fff9d0}.share-lnk:hover{color: #ffffff;}
+.share-snippet #copiedText{width:100%;position:relative;height: 35%;}
 @media screen and (min-width:772px){ 
 .brd-btm{border-bottom: thin solid #ccc;}
 } 
